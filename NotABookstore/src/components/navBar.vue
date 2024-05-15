@@ -13,8 +13,8 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav ms-auto text-center">
                         <router-link class="nav-link" aria-current="page" to="/">Home</router-link>
-                        <router-link class="nav-link" to="/about">Books</router-link>
-                        <router-link class="nav-link" to="/settings">Reviews</router-link>
+                        <router-link class="nav-link" to="/books">Books</router-link>
+                        <router-link class="nav-link" to="/reviews">Reviews</router-link>
                         <router-link class="nav-link" to="/login">Login</router-link>
                     </div>
                 </div>
