@@ -1,18 +1,13 @@
 <script setup>
 import navBar from './components/navBar.vue';
-// import footerBook from '@/components/footerBook.vue';
+import footerBook from '@/components/footerBook.vue';
 </script>
 
 <template>
-  <header>
-    <navBar></navBar>
-  </header>
+  <navBar />
   <RouterView></RouterView>
 
-  <!-- <footer>
-    <footerBook></footerBook>
-  </footer> -->
-
+  <footerBook />
 </template>
 
 <style scoped></style>
