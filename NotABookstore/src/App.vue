@@ -6,7 +6,6 @@ import footerBook from '@/components/footerBook.vue';
 <template>
   <navBar />
   <RouterView></RouterView>
-
   <footerBook />
 </template>
 
