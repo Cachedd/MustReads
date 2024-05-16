@@ -8,8 +8,8 @@
             <p>Experience the effortless way to capture your book reflections. This platform makes it simple to jot down
               your thoughts as you read. No more struggling to remember key points or favorite quotes. Sign up today and
               start recording your reading journey with ease and convenience.</p>
-            <a href="#" class="signup-btn">Sign Up</a>
-            <a href="#" class="books-btn">Books</a>
+            <a href="#" class="btn btn-primary">Sign Up</a>
+            <a href="#" class="btn btn-outline-primary">Books</a>
           </div>
         </div>
         <div class="col-md-6">
@@ -34,8 +34,6 @@
 
 .landing-box p {
   margin: 1.25rem auto;
-  padding-bottom: 10px;
-
 }
 
 .landing-img {
@@ -44,21 +42,8 @@
 }
 
 .landing-box a {
-  text-decoration: none !important;
-  background: #a66ace;
-  border-radius: 50px;
+  border-radius: 30px;
   padding: 10px 20px;
   margin-right: 30px;
-  border: 2px solid #a66ace !important;
-  color: white;
-}
-
-.signup-btn:hover {
-  color: white;
-}
-
-.books-btn {
-  background: none !important;
-  color: #a66ace !important;
 }
 </style>
