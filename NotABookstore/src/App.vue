@@ -1,10 +1,10 @@
 <script setup>
-import navBar from './components/navBar.vue';
-import footerBook from '@/components/footerBook.vue';
+import NavBar from '@/components/NavBar.vue';
+import footerBook from '@/components/PageFooter.vue';
 </script>
 
 <template>
-  <navBar />
+  <NavBar />
   <RouterView></RouterView>
   <footerBook />
 </template>
