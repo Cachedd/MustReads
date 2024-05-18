@@ -8,7 +8,7 @@
             <p>Experience the effortless way to capture your book reflections. This platform makes it simple to jot down
               your thoughts as you read. No more struggling to remember key points or favorite quotes. Sign up today and
               start recording your reading journey with ease and convenience.</p>
-            <a href="#" class="btn btn-primary">Sign Up</a>
+            <router-link to="/register" class="btn btn-primary">Sign Up</router-link>
             <router-link to="/books" class="btn btn-outline-primary">Books</router-link>
           </div>
         </div>
