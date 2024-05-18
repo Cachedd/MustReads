@@ -4,19 +4,23 @@ import BookCard from '@/components/BookCard.vue'
 import LoadingCard from '@/components/LoadingCard.vue'
 // import filterTypes from '@/components/filterTypes.vue'
 import BooksAPI from '@/services/BooksAPI.js'
+import Paginate from 'vuejs-paginate-next'
 
 export default {
   components: {
     SearchBar,
     BookCard,
-    LoadingCard
+    LoadingCard,
+    paginate: Paginate
     // filterTypes,
   },
   data() {
     return {
       // array to store the fetched books from the api
       fetchedBooks: [],
-      loading: true
+      loading: true,
+      perPage: 12,
+      currentPage: 1
     }
   },
   async mounted() {
@@ -26,6 +30,22 @@ export default {
       this.loading = false
     } catch (err) {
       console.log(err);
+    }
+  },
+  computed: {
+    // returns data according to page number
+    paginateBooks() {
+      let current = this.currentPage * this.perPage
+      let start = current - this.perPage
+      return this.fetchedBooks.slice(start, current)
+    },
+    getPageCount() {
+      return Math.ceil(this.fetchedBooks.length / this.perPage)
+    }
+  },
+  methods: {
+    clickCallback(pageNum) {
+      this.currentPage = Number(pageNum)
     }
   }
 }
@@ -42,10 +62,11 @@ export default {
       </template>
       <template v-else>
         <!-- passing in the values using props to display book cards -->
-        <BookCard v-for="book in fetchedBooks" :key="book.id" :title="book.title" :authors="book.authors"
+        <BookCard v-for="book in paginateBooks" :key="book.id" :title="book.title" :authors="book.authors"
           :image_url="book.image_url" />
       </template>
     </div>
+
     <!-- Vue Paginate template -->
     <paginate :page-count="getPageCount" :page-range="4" :margin-pages="5" :click-handler="clickCallback"
       :prev-text="'Prev'" :next-text="'Next'" :container-class="'pagination'" :page-class="'page-item'">
@@ -53,4 +74,8 @@ export default {
   </div>
 </template>
 
-<style></style>
+<style scoped>
+.pagination {
+  margin-top: 10px;
+}
+</style>
