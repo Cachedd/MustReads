@@ -4,9 +4,17 @@ import footerBook from '@/components/PageFooter.vue';
 </script>
 
 <template>
-  <NavBar />
-  <RouterView></RouterView>
-  <footerBook />
+  <div class="app-container">
+    <NavBar />
+    <RouterView />
+    <footerBook />
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+</style>

@@ -84,27 +84,28 @@ export default {
 </script>
 
 <template>
-
-  <div class="container">
-    <h1>Book Search</h1>
-    <SearchBar @search="searchBooks" />
-    <GenreFilter @findClassics="getClassics" @findDystopia="getDystopia" @findHistorical="getHistorical"
-      @findScienceFiction="getScienceFiction" />
-    <div class="row row-cols-1 row-cols-md-4 g-4">
-      <template v-if="loading">
-        <LoadingCard v-for="i in 12" :key="i" />
-      </template>
-      <template v-else>
-        <!-- passing in the values using props to display book cards -->
-        <BookCard v-for="book in paginateBooks" :key="book.id" :title="book.title" :authors="book.authors"
-          :image_url="book.image_url" />
-      </template>
+  <main>
+    <div class="container">
+      <h1>Book Search</h1>
+      <SearchBar @search="searchBooks" />
+      <GenreFilter @findClassics="getClassics" @findDystopia="getDystopia" @findHistorical="getHistorical"
+        @findScienceFiction="getScienceFiction" />
+      <div class="row row-cols-1 row-cols-md-4 g-4">
+        <template v-if="loading">
+          <LoadingCard v-for="i in 12" :key="i" />
+        </template>
+        <template v-else>
+          <!-- passing in the values using props to display book cards -->
+          <BookCard v-for="book in paginateBooks" :key="book.id" :title="book.title" :authors="book.authors"
+            :image_url="book.image_url" />
+        </template>
+      </div>
+      <!-- Vue Paginate -->
+      <paginate :page-count="getPageCount" :page-range="4" :margin-pages="5" :click-handler="clickCallback"
+        :prev-text="'Prev'" :next-text="'Next'" :container-class="'pagination'" :page-class="'page-item'">
+      </paginate>
     </div>
-    <!-- Vue Paginate -->
-    <paginate :page-count="getPageCount" :page-range="4" :margin-pages="5" :click-handler="clickCallback"
-      :prev-text="'Prev'" :next-text="'Next'" :container-class="'pagination'" :page-class="'page-item'">
-    </paginate>
-  </div>
+  </main>
 </template>
 
 <style scoped>

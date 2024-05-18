@@ -9,7 +9,7 @@
               your thoughts as you read. No more struggling to remember key points or favorite quotes. Sign up today and
               start recording your reading journey with ease and convenience.</p>
             <a href="#" class="btn btn-primary">Sign Up</a>
-            <a href="#" class="btn btn-outline-primary">Books</a>
+            <router-link to="/books" class="btn btn-outline-primary">Books</router-link>
           </div>
         </div>
         <div class="col-md-6">
@@ -23,8 +23,8 @@
 <style scoped>
 .wrapper {
   margin: 25px auto;
-  padding-top: 2rem;
-  height: 50dvh;
+  padding-top: 2.5rem;
+
 }
 
 .landing-box h1 {
