@@ -2,17 +2,17 @@
 import SearchBar from '@/components/SearchBar.vue'
 import BookCard from '@/components/BookCard.vue'
 import LoadingCard from '@/components/LoadingCard.vue'
-// import filterTypes from '@/components/filterTypes.vue'
 import BooksAPI from '@/services/BooksAPI.js'
 import Paginate from 'vuejs-paginate-next'
+import GenreFilter from '@/components/GenreFilter.vue'
 
 export default {
   components: {
     SearchBar,
     BookCard,
     LoadingCard,
-    paginate: Paginate
-    // filterTypes,
+    paginate: Paginate,
+    GenreFilter
   },
   data() {
     return {
@@ -46,6 +46,38 @@ export default {
   methods: {
     clickCallback(pageNum) {
       this.currentPage = Number(pageNum)
+    },
+    async fetchData(apiCall) {
+      try {
+        this.loading = true;
+        const response = await apiCall()
+        // check if we recieved the response
+        if (response) {
+          this.fetchedBooks = response.data;
+        } else {
+          console.error("Invalid response from API");
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Fetching data failed!');
+      } finally {
+        this.loading = false;
+      }
+    },
+    async searchBooks(searchTerm) {
+      await this.fetchData(() => BooksAPI.searchBooks(searchTerm))
+    },
+    async getClassics() {
+      await this.fetchData(BooksAPI.getClassics)
+    },
+    async getDystopia() {
+      await this.fetchData(BooksAPI.getDystopia)
+    },
+    async getHistorical() {
+      await this.fetchData(BooksAPI.getHistorical)
+    },
+    async getScienceFiction() {
+      await this.fetchData(BooksAPI.getScienceFiction)
     }
   }
 }
@@ -55,7 +87,9 @@ export default {
 
   <div class="container">
     <h1>Book Search</h1>
-    <SearchBar />
+    <SearchBar @search="searchBooks" />
+    <GenreFilter @findClassics="getClassics" @findDystopia="getDystopia" @findHistorical="getHistorical"
+      @findScienceFiction="getScienceFiction" />
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <template v-if="loading">
         <LoadingCard v-for="i in 12" :key="i" />
@@ -66,8 +100,7 @@ export default {
           :image_url="book.image_url" />
       </template>
     </div>
-
-    <!-- Vue Paginate template -->
+    <!-- Vue Paginate -->
     <paginate :page-count="getPageCount" :page-range="4" :margin-pages="5" :click-handler="clickCallback"
       :prev-text="'Prev'" :next-text="'Next'" :container-class="'pagination'" :page-class="'page-item'">
     </paginate>
@@ -77,5 +110,9 @@ export default {
 <style scoped>
 .pagination {
   margin-top: 10px;
+}
+
+.container .filter {
+  margin-bottom: 10px;
 }
 </style>
