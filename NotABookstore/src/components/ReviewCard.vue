@@ -1,23 +1,32 @@
 <script>
 import { db } from '@/firebase';
-import { deleteDoc, doc } from 'firebase/firestore';
+import { serverTimestamp, setDoc, deleteDoc, doc } from 'firebase/firestore';
+
+let createdId = 0
 
 export default {
     props: {
         title: String,
         author: String,
         timestamp: String,
-        reviewId: String
+        reviewId: String,
+        comments: String
     },
     data() {
         return {
-            comment: ''
+            comment: this.comments,
+            createdId: `${createdId++}`
         }
     },
     methods: {
         async deleteReview() {
-            // registering realtime listener for the changes on current doc
             await deleteDoc(doc(db, 'reviews', this.reviewId))
+        },
+        async saveReview() {
+            await setDoc(doc(db, 'reviews', this.reviewId), {
+                comment: this.comment,
+                time: serverTimestamp()
+            }, { merge: true })
         }
     }
 }
@@ -32,11 +41,11 @@ export default {
                 <h6 class="card-subtitle mb-2 text-body-secondary">{{ author }}</h6>
                 <div class="form-floating">
                     <textarea v-model="comment" class="form-control" placeholder="Leave a comment here"
-                        id="floatingTextarea2" style="height: 100px"></textarea>
-                    <label for="floatingTextarea2">Reviews</label>
+                        :id="createdId + 'textArea'" style="height: 100px"></textarea>
+                    <label :for="createdId + 'textArea'">Reviews</label>
                 </div>
-                <a href="#" class="btn btn-success btns">Save</a>
-                <a @click="deleteReview" class="btn btn btn-danger btns">Delete</a>
+                <a @click="saveReview" class="btn btn-success btns">Save</a>
+                <a @click="deleteReview" class="btn btn-danger btns">Delete</a>
             </div>
             <div class="card-footer">
                 <small class="text-body-secondary">Last updated {{ timestamp }}</small>

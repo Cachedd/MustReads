@@ -69,10 +69,10 @@ export default {
                     </div>
                     <p v-if="err" class="fst-italic">{{ err }}</p>
                     <div class="text-center">
-                        <button v-if="!xhrRequest" class="btn btn-primary btn-lg">
+                        <button type="submit" v-if="!xhrRequest" class="btn btn-primary btn-lg">
                             Sign Up
                         </button>
-                        <button v-if="xhrRequest" class="btn btn-primary btn-lg">
+                        <button type="submit" v-if="xhrRequest" class="btn btn-primary btn-lg">
                             <span class="spinner-border spinner-border-sm"></span>
                             Signing up
                         </button>

@@ -1,4 +1,5 @@
 <script>
+import router from '@/router'
 import { auth } from '@/firebase'
 import { db } from '@/firebase';
 import { serverTimestamp, addDoc, collection } from 'firebase/firestore';
@@ -20,14 +21,17 @@ export default {
     },
     methods: {
         async addBooks() {
-            await addDoc(collection(db, 'reviews'), {
-                userId: `${auth.currentUser}`,
-                title: this.title,
-                author: this.authors,
-                comment: '',
-                time: serverTimestamp()
-            })
-            console.log("Added data succesfully")
+            if (auth.currentUser) {
+                await addDoc(collection(db, 'reviews'), {
+                    userId: `${auth.currentUser.uid}`,
+                    title: this.title,
+                    author: this.authors,
+                    comment: '',
+                    time: serverTimestamp()
+                })
+            } else {
+                router.push("/login")
+            }
         }
     }
 }

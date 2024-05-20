@@ -20,7 +20,6 @@ export default {
                 .then(
                     () => {
                         router.push("/reviews")
-                        console.log("yeehaw")
                     }
                 )
                 .catch((error) => {
@@ -50,10 +49,10 @@ export default {
                     </div>
                     <p v-if="err" class="fst-italic">{{ err }}</p>
                     <div class="col-sm-12 text-center">
-                        <button v-if="!xhrRequest" class="btn btn-primary btn-lg">
+                        <button type="submit" v-if="!xhrRequest" class="btn btn-primary btn-lg">
                             Login In
                         </button>
-                        <button v-if="xhrRequest" class="btn btn-primary btn-lg">
+                        <button type="submit" v-if="xhrRequest" class="btn btn-primary btn-lg">
                             <span class="spinner-border spinner-border-sm"></span>
                             Logging In
                         </button>

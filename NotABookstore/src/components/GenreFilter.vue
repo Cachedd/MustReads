@@ -1,5 +1,11 @@
 <script>
 export default {
+    emits: ['findClassics', 'findDystopia', 'findHistorical', 'findScienceFiction'],
+    data() {
+        return {
+            activeGenre: ''
+        }
+    },
     methods: {
         findClassics() {
             this.$emit('findClassics')
@@ -12,6 +18,13 @@ export default {
         },
         findScienceFiction() {
             this.$emit('findScienceFiction')
+        },
+        toggleGenre(genre) {
+            if (this.activeGenre === genre) {
+                this.activeGenre = null
+            } else {
+                this.activeGenre = genre
+            }
         }
     }
 }
@@ -24,6 +37,7 @@ export default {
             <div class="d-grid gap-3 col-3 mx-auto">
                 <button @click="findClassics" class="btn btn-outline-dark" type="button">Classics</button>
             </div>
+
             <div class="d-grid gap-3 col-3 mx-auto">
                 <button @click="findDystopia" class="btn btn-outline-dark" type="button">Dystopia</button>
             </div>
