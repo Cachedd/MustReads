@@ -1,6 +1,7 @@
 <script>
-import firebase from "firebase/compat/app"
-import "firebase/compat/auth"
+import { auth } from '@/firebase.js'
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import router from '@/router';
 
 export default {
     data() {
@@ -8,24 +9,40 @@ export default {
             email: '',
             password1: '',
             password2: '',
-            err: false,
+            err: '',
             xhrRequest: false
         }
     },
     methods: {
         signupRequest() {
-            this.err = this.password1 != this.password2
+            this.comparePasswords()
 
             if (!this.err) {
                 this.xhrRequest = true
-                firebase.auth().createUserWithEmailAndPassword(this.email, this.password1)
+                createUserWithEmailAndPassword(auth, this.email, this.password1)
                     .then(() => {
-                        this.$router.replace('/reviews')
-                    },
-                        (err) => {
-                            this.xhrRequest = false
-                            alert(`Error - ${err.message}`)
-                        })
+                        router.push("/reviews");
+                    })
+                    .catch((error) => {
+                        this.xhrRequest = false;
+                        switch (error.code) {
+                            case "auth/email-already-in-use":
+                                this.err = "Account already exists with this email"
+                                break;
+                            case "auth/weak-password":
+                                this.err = "Password needs to be atleast 6 characters long"
+                                break;
+                            default:
+                                this.err = "Email or password was incorrect"
+                                break;
+                        }
+
+                    })
+            }
+        },
+        comparePasswords() {
+            if (this.password1 != this.password2) {
+                this.err = "Passwords don't match"
             }
         }
     }
@@ -50,7 +67,7 @@ export default {
                         <label for="password2">Confirm Password</label>
                         <input v-model="password2" type="password" id="password2" class="form-control form-control-lg">
                     </div>
-                    <p v-show="err" class="fst-italic">Passwords don't match</p>
+                    <p v-if="err" class="fst-italic">{{ err }}</p>
                     <div class="text-center">
                         <button v-if="!xhrRequest" class="btn btn-primary btn-lg">
                             Sign Up

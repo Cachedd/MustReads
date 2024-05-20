@@ -10,7 +10,7 @@
                     <span class="placeholder col-7"></span>
                     <span class="placeholder col-4"></span>
                 </p>
-                <a class="btn btn-primary disabled placeholder col-6" aria-disabled="true"></a>
+                <a class="btn btn-dark disabled placeholder col-6" aria-disabled="true"></a>
             </div>
         </div>
     </div>

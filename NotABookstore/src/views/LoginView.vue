@@ -1,30 +1,34 @@
 <script>
-import firebase from "firebase/compat/app"
-import "firebase/compat/auth"
+import { auth } from '@/firebase.js'
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import router from '@/router';
 
 export default {
     data() {
         return {
             email: '',
             password: '',
-            xhrRequest: false
+            xhrRequest: false,
+            err: ''
 
         }
     },
     methods: {
         loginRequest() {
             this.xhrRequest = true
-            firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+            signInWithEmailAndPassword(auth, this.email, this.password)
                 .then(
                     () => {
-                        this.$router.replace('/reviews')
-                    },
-                    (err) => {
-                        this.xhrRequest = false
-                        alert(err)
-                        console.log(err)
+                        router.push("/reviews")
+                        console.log("yeehaw")
                     }
                 )
+                .catch((error) => {
+                    this.xhrRequest = false;
+                    console.log(error.code)
+                    // Since only invalid credentials is provided to protect users from email enumeration attacks
+                    this.err = "Email or password was incorrect"
+                })
         }
     }
 }
@@ -44,6 +48,7 @@ export default {
                         <label for="password">Password</label>
                         <input v-model="password" type="password" id="password" class="form-control form-control-lg">
                     </div>
+                    <p v-if="err" class="fst-italic">{{ err }}</p>
                     <div class="col-sm-12 text-center">
                         <button v-if="!xhrRequest" class="btn btn-primary btn-lg">
                             Login In

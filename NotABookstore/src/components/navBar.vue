@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import firebase from 'firebase/compat/app'
-import "firebase/compat/auth"
+import { auth } from '@/firebase.js'
+import router from '@/router'
 
 export default {
     data() {
@@ -35,15 +35,14 @@ export default {
         }
     },
     created() {
-        // checks if user object is present and display the nav links
-        firebase.auth().onAuthStateChanged(user => {
-            this.user = user
+        auth.onAuthStateChanged(user => {
+            this.user = user;
         })
     },
     methods: {
         logout() {
-            firebase.auth().signOut()
-            this.$router.replace('/login')
+            auth.signOut()
+            router.push('/login')
         }
     }
 }

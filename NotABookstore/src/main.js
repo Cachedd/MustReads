@@ -1,7 +1,5 @@
 // Import our custom CSS
 import "@/scss/styles.scss";
-// eslint-disable-next-line no-unused-vars
-import firebase from "../src/firebase";
 import "bootstrap/dist/js/bootstrap.js";
 
 import { createApp } from "vue";
