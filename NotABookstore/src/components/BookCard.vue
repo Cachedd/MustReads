@@ -25,7 +25,7 @@ export default {
             <div class="card-body">
                 <h5 class="card-title">{{ title }}</h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary">{{ authors }}</h6>
-                <a href="#" class="btn btn-outline-primary">Favorite</a>
+                <a href="#" class="btn btn-outline-dark">Favorite</a>
             </div>
         </div>
     </div>

@@ -1,7 +1,19 @@
+<script>
+import ReviewCard from '@/components/ReviewCard.vue';
+
+export default {
+    components:
+    {
+        ReviewCard
+    }
+}
+</script>
+
 <template>
     <div class="container">
-        <p>this is the reviews page </p>
+        <h1>Reviews</h1>
+        <ReviewCard />
     </div>
 </template>
 
-<style></style>
+<style scoped></style>

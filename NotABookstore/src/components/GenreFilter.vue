@@ -22,16 +22,17 @@ export default {
         <h2>Genres</h2>
         <div class="row">
             <div class="d-grid gap-3 col-3 mx-auto">
-                <button @click="findClassics" class="btn btn-primary" type="button">Classics</button>
+                <button @click="findClassics" class="btn btn-outline-dark" type="button">Classics</button>
             </div>
             <div class="d-grid gap-3 col-3 mx-auto">
-                <button @click="findDystopia" class="btn btn-primary" type="button">Dystopia</button>
+                <button @click="findDystopia" class="btn btn-outline-dark" type="button">Dystopia</button>
             </div>
             <div class="d-grid gap-3 col-3 mx-auto">
-                <button @click="findHistorical" class="btn btn-primary" type="button">Historical</button>
+                <button @click="findHistorical" class="btn btn-outline-dark" type="button">Historical</button>
             </div>
             <div class="d-grid gap-3 col-3 mx-auto">
-                <button @click="findScienceFiction" class="btn btn-primary" type="button">Science Fiction</button>
+                <button @click="findScienceFiction" class="btn btn-outline-dark" type="button">Science
+                    Fiction</button>
             </div>
         </div>
     </div>
