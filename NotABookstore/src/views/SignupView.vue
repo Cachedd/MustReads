@@ -8,23 +8,19 @@ export default {
             email: '',
             password: '',
             xhrRequest: false
-
         }
     },
     methods: {
-        loginRequest() {
+        signupRequest() {
             this.xhrRequest = true
-            firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-                .then(
-                    () => {
-                        this.$router.replace('/reviews')
-                    },
+            firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+                .then(() => {
+                    this.$router.replace('/reviews')
+                },
                     (err) => {
                         this.xhrRequest = false
-                        alert(err)
-                        console.log(err)
-                    }
-                )
+                        alert(`Error - ${err.message}`)
+                    })
         }
     }
 }
@@ -34,8 +30,8 @@ export default {
     <div class="container">
         <div class="row">
             <div class="col-sm-5 m-auto">
-                <h1>Log In</h1>
-                <form id="login-form" @submit.prevent="loginRequest">
+                <h1>Create An Account</h1>
+                <form id="signup-form" @submit.prevent="signupRequest">
                     <div class="form-group">
                         <label for="email">Email Address</label>
                         <input v-model="email" type="email" id="email" class="form-control form-control-lg">
@@ -44,16 +40,16 @@ export default {
                         <label for="password">Password</label>
                         <input v-model="password" type="password" id="password" class="form-control form-control-lg">
                     </div>
-                    <div class="col-sm-12 text-center">
+                    <div class="text-center">
                         <button v-if="!xhrRequest" class="btn btn-primary btn-lg">
-                            Login In
+                            Sign Up
                         </button>
                         <button v-if="xhrRequest" class="btn btn-primary btn-lg">
                             <span class="spinner-border spinner-border-sm"></span>
-                            Logging In
+                            Signing up
                         </button>
                         <div class="form-group mt-3">
-                            <p>Don't have an account? <router-link to="/register">Sign Up</router-link></p>
+                            <p>Already have an account? <router-link to="/login">Log In</router-link></p>
                         </div>
                     </div>
                 </form>
@@ -62,6 +58,7 @@ export default {
     </div>
 </template>
 
+
 <style scoped>
 button {
     margin-top: 10px;
@@ -69,6 +66,9 @@ button {
 
 .container {
     margin-top: 8%;
+}
+
+.btn-spin {
     position: relative;
     top: -3px;
 }

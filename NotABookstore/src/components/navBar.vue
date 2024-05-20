@@ -14,8 +14,9 @@
                     <div class="navbar-nav ms-auto text-center">
                         <router-link class="nav-link" aria-current="page" to="/">Home</router-link>
                         <router-link class="nav-link" to="/books">Books</router-link>
-                        <router-link class="nav-link" to="/reviews">Reviews</router-link>
-                        <router-link class="nav-link" to="/login">Login</router-link>
+                        <router-link v-if="user" class="nav-link" to="/reviews">Reviews</router-link>
+                        <router-link v-if="!user" class="nav-link" to="/login">Login</router-link>
+                        <a v-if="user" class="nav-link" @click="logout">Logout</a>
                     </div>
                 </div>
             </nav>
@@ -24,8 +25,27 @@
 </template>
 
 <script>
-export default {
+import firebase from 'firebase/compat/app'
+import "firebase/compat/auth"
 
+export default {
+    data() {
+        return {
+            user: null
+        }
+    },
+    created() {
+        // checks if user object is present and display the nav links
+        firebase.auth().onAuthStateChanged(user => {
+            this.user = user
+        })
+    },
+    methods: {
+        logout() {
+            firebase.auth().signOut()
+            this.$router.replace('/login')
+        }
+    }
 }
 </script>
 
