@@ -13,6 +13,7 @@
           </div>
         </div>
         <div class="col-md-6">
+          <!-- img link - https://www.freepik.com/free-vector/flat-background-template-world-book-day-celebration_39431994.htm#from_view=detail_alsolike -->
           <img src="../assets/reading-book.jpg" alt="reading book illustration" class="landing-img">
         </div>
       </div>
