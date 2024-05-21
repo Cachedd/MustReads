@@ -18,6 +18,9 @@ const routes = [
     path: "/reviews",
     name: "reviews",
     component: () => import("../views/ReviewsView.vue"),
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/login",
@@ -27,7 +30,7 @@ const routes = [
   {
     path: "/register",
     name: "register",
-    component: () => import("../views/RegisterView.vue"),
+    component: () => import("../views/SignupView.vue"),
   },
 ];
 

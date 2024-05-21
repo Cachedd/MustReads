@@ -1,4 +1,9 @@
 <script>
+import router from '@/router'
+import { auth } from '@/firebase'
+import { db } from '@/firebase';
+import { serverTimestamp, addDoc, collection } from 'firebase/firestore';
+
 export default {
     props: {
         title: {
@@ -13,6 +18,21 @@ export default {
             type: String,
             required: true,
         }
+    },
+    methods: {
+        async addBooks() {
+            if (auth.currentUser) {
+                await addDoc(collection(db, 'reviews'), {
+                    userId: `${auth.currentUser.uid}`,
+                    title: this.title,
+                    author: this.authors,
+                    comment: '',
+                    time: serverTimestamp()
+                })
+            } else {
+                router.push("/login")
+            }
+        }
     }
 }
 </script>
@@ -25,7 +45,7 @@ export default {
             <div class="card-body">
                 <h5 class="card-title">{{ title }}</h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary">{{ authors }}</h6>
-                <a href="#" class="btn btn-outline-primary">Favorite</a>
+                <a @click="addBooks" class="btn btn-outline-dark">Favorite</a>
             </div>
         </div>
     </div>
