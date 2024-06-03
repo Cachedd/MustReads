@@ -1,8 +1,8 @@
 <template>
     <header>
         <div class="container">
-            <nav class="navbar navbar-expand-sm navbar-light">
-                <a class="navbar-brand" href="#">
+            <nav class="navbar navbar-expand-sm navbar-dark">
+                <a class="navbar-brand text-white" href="#">
                     <img src="./icons/book-icon.svg" alt="book icon" width="30" height="24">
                     MustReads</a>
                 <button class=" navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -12,11 +12,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav ms-auto text-center">
-                        <router-link class="nav-link" aria-current="page" to="/">Home</router-link>
-                        <router-link class="nav-link" to="/books">Books</router-link>
-                        <router-link v-if="user" class="nav-link" to="/reviews">Reviews</router-link>
-                        <router-link v-if="!user" class="nav-link" to="/login">Login</router-link>
-                        <a v-if="user" class="nav-link" @click="logout">Logout</a>
+                        <router-link class="nav-link text-white" aria-current="page" to="/">Home</router-link>
+                        <router-link class="nav-link text-white" to="/books">Books</router-link>
+                        <router-link v-if="user" class="nav-link text-white" to="/reviews">Reviews</router-link>
+                        <router-link v-if="!user" class="nav-link text-white" to="/login">Login</router-link>
+                        <a v-if="user" class="nav-link text-white" @click="logout">Logout</a>
                     </div>
                 </div>
             </nav>
@@ -51,5 +51,11 @@ export default {
 <style scoped>
 .router-link-exact-active {
     font-weight: bolder;
+}
+
+header {
+    background-color: #2b313e;
+    padding: 5px;
+    text-align: center;
 }
 </style>

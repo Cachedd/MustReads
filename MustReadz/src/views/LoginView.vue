@@ -10,12 +10,12 @@ export default {
             password: '',
             xhrRequest: false,
             err: ''
-
         }
     },
     methods: {
         loginRequest() {
             this.xhrRequest = true
+            console.log("inside loging req")
             signInWithEmailAndPassword(auth, this.email, this.password)
                 .then(
                     () => {
@@ -50,7 +50,7 @@ export default {
                     <p v-if="err" class="fst-italic">{{ err }}</p>
                     <div class="col-sm-12 text-center">
                         <button type="submit" v-if="!xhrRequest" class="btn btn-primary btn-lg">
-                            Login In
+                            Login
                         </button>
                         <button type="submit" v-if="xhrRequest" class="btn btn-primary btn-lg">
                             <span class="spinner-border spinner-border-sm"></span>
