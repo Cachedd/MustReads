@@ -88,8 +88,10 @@ export default {
     <div class="container">
       <h1>Book Search</h1>
       <SearchBar @search="searchBooks" />
-      <GenreFilter @findClassics="getClassics" @findDystopia="getDystopia" @findHistorical="getHistorical"
-        @findScienceFiction="getScienceFiction" />
+      <div>
+        <GenreFilter @findClassics="getClassics" @findDystopia="getDystopia" @findHistorical="getHistorical"
+          @findScienceFiction="getScienceFiction" />
+      </div>
       <div class="row row-cols-1 row-cols-md-4 g-4">
         <template v-if="loading">
           <LoadingCard v-for="i in 12" :key="i" />

@@ -31,20 +31,20 @@ export default {
 </script>
 
 <template>
-    <div class="container filter">
+    <div class="container">
         <h2>Genres</h2>
         <div class="row">
-            <div class="d-grid gap-3 col-3 mx-auto">
+            <div class="d-grid gap-3 col-12 col-sm-6 col-md-3 mx-auto mb-3">
                 <button @click="findClassics" class="btn btn-outline-dark" type="button">Classics</button>
             </div>
 
-            <div class="d-grid gap-3 col-3 mx-auto">
+            <div class="d-grid gap-3 col-12 col-sm-6 col-md-3 mx-auto mb-3">
                 <button @click="findDystopia" class="btn btn-outline-dark" type="button">Dystopia</button>
             </div>
-            <div class="d-grid gap-3 col-3 mx-auto">
+            <div class="d-grid gap-3 col-12 col-sm-6 col-md-3 mx-auto mb-3">
                 <button @click="findHistorical" class="btn btn-outline-dark" type="button">Historical</button>
             </div>
-            <div class="d-grid gap-3 col-3 mx-auto">
+            <div class="d-grid gap-3 col-12 col-sm-6 col-md-3 mx-auto mb-3">
                 <button @click="findScienceFiction" class="btn btn-outline-dark" type="button">Science
                     Fiction</button>
             </div>

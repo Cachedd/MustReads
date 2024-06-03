@@ -15,13 +15,16 @@ export default {
     },
     methods: {
         signupRequest() {
+            this.err = ''
             this.comparePasswords()
-
+            console.log("I am in the signup user")
+            console.log(`${this.err}`)
             if (!this.err) {
                 this.xhrRequest = true
                 createUserWithEmailAndPassword(auth, this.email, this.password1)
                     .then(() => {
                         router.push("/reviews");
+                        console.log("User has been created")
                     })
                     .catch((error) => {
                         this.xhrRequest = false;
@@ -43,6 +46,7 @@ export default {
         comparePasswords() {
             if (this.password1 != this.password2) {
                 this.err = "Passwords don't match"
+                console.log("I am in the compare passwords function")
             }
         }
     }
