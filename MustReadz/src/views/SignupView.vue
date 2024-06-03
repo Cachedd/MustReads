@@ -36,7 +36,6 @@ export default {
                                 this.err = "Email or password was incorrect"
                                 break;
                         }
-
                     })
             }
         },
@@ -67,7 +66,7 @@ export default {
                         <label for="password2">Confirm Password</label>
                         <input v-model="password2" type="password" id="password2" class="form-control form-control-lg">
                     </div>
-                    <p v-if="err" class="fst-italic">{{ err }}</p>
+                    <p v-if="err" v-color="'red'" class="fst-italic">{{ err }}</p>
                     <div class="text-center">
                         <button type="submit" v-if="!xhrRequest" class="btn btn-primary btn-lg">
                             Sign Up

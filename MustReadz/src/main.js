@@ -11,3 +11,7 @@ const app = createApp(App);
 app.use(router);
 
 app.mount("#app");
+
+app.directive('color', (el, binding) => {
+    el.style.color = binding.value
+})

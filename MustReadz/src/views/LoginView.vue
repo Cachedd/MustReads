@@ -15,7 +15,6 @@ export default {
     methods: {
         loginRequest() {
             this.xhrRequest = true
-            console.log("inside loging req")
             signInWithEmailAndPassword(auth, this.email, this.password)
                 .then(
                     () => {
@@ -47,7 +46,7 @@ export default {
                         <label for="password">Password</label>
                         <input v-model="password" type="password" id="password" class="form-control form-control-lg">
                     </div>
-                    <p v-if="err" class="fst-italic">{{ err }}</p>
+                    <p v-if="err" v-color="'red'" class="fst-italic">{{ err }}</p>
                     <div class="col-sm-12 text-center">
                         <button type="submit" v-if="!xhrRequest" class="btn btn-primary btn-lg">
                             Login
