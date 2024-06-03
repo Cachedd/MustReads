@@ -103,7 +103,7 @@ export default {
         </template>
       </div>
       <!-- Vue Paginate -->
-      <paginate :page-count="getPageCount" :page-range="4" :margin-pages="5" :click-handler="clickCallback"
+      <paginate :page-count="getPageCount" :page-range="4" :margin-pages="2" :click-handler="clickCallback"
         :prev-text="'Prev'" :next-text="'Next'" :container-class="'pagination'" :page-class="'page-item'">
       </paginate>
     </div>
