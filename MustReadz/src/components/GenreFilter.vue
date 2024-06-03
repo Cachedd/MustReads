@@ -19,13 +19,6 @@ export default {
         findScienceFiction() {
             this.$emit('findScienceFiction')
         },
-        toggleGenre(genre) {
-            if (this.activeGenre === genre) {
-                this.activeGenre = null
-            } else {
-                this.activeGenre = genre
-            }
-        }
     }
 }
 </script>
@@ -35,18 +28,26 @@ export default {
         <h2>Genres</h2>
         <div class="row">
             <div class="d-grid gap-3 col-12 col-sm-6 col-md-3 mx-auto mb-3">
-                <button @click="findClassics" class="btn btn-outline-dark" type="button">Classics</button>
+                <input @click="findClassics" type="radio" class="btn-check" name="genres" id="classics"
+                    autocomplete="off">
+                <label class="btn btn-outline-dark" for="classics">Classics</label>
             </div>
 
             <div class="d-grid gap-3 col-12 col-sm-6 col-md-3 mx-auto mb-3">
-                <button @click="findDystopia" class="btn btn-outline-dark" type="button">Dystopia</button>
+                <input @click="findDystopia" type="radio" class="btn-check" name="genres" id="dystopia"
+                    autocomplete="off">
+                <label class="btn btn-outline-dark" for="dystopia">Dystopia</label>
             </div>
             <div class="d-grid gap-3 col-12 col-sm-6 col-md-3 mx-auto mb-3">
-                <button @click="findHistorical" class="btn btn-outline-dark" type="button">Historical</button>
+                <input @click="findHistorical" type="radio" class="btn-check" name="genres" id="historical"
+                    autocomplete="off">
+                <label class="btn btn-outline-dark" for="historical">Historical</label>
             </div>
             <div class="d-grid gap-3 col-12 col-sm-6 col-md-3 mx-auto mb-3">
-                <button @click="findScienceFiction" class="btn btn-outline-dark" type="button">Science
-                    Fiction</button>
+                <input @click="findScienceFiction" type="radio" class="btn-check" name="genres" id="sciencefiction"
+                    autocomplete="off">
+                <label class="btn btn-outline-dark" for="sciencefiction">Science
+                    Fiction</label>
             </div>
         </div>
     </div>

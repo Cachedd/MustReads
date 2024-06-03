@@ -49,7 +49,8 @@ export default {
 <template>
     <div class="container">
         <h1>Reviews</h1>
-        <p class="lead">Start favoriting books to fill up this space to write reviews for your books! 📚</p>
+        <p class="lead">Start favoriting books to fill up this space and begin writing reviews for your favorite reads!
+            📚</p>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <ReviewCard v-for="review in reviews" :key="review.id" :reviewId="review.id" :title="review.title"
                 :author="review.author" :timestamp="review.time" :comments="review.comment" />
